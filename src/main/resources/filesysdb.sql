@@ -244,3 +244,5 @@ INSERT INTO public.file_object VALUES ('LINK', 236, '2019-10-26 07:10:04', '17.p
 INSERT INTO public.file_object VALUES ('LINK', 237, '2021-07-29 21:04:02', '8.png', NULL, 'http://dummyimage.com/102x100.png/cc0000/ffffff', 6);
 INSERT INTO public.file_object VALUES ('LINK', 238, '2019-01-28 03:36:52', '11.png', NULL, 'http://dummyimage.com/110x100.png/ff4444/ffffff', 9);
 INSERT INTO public.file_object VALUES ('LINK', 239, '2019-01-05 18:12:03', '12.png', NULL, 'http://dummyimage.com/173x100.png/ff4444/ffffff', 11);
+
+ALTER SEQUENCE file_object_seq RESTART WITH 1000;

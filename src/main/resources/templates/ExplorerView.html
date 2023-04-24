@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/ExplorerView.css}">
 </head>
 <body>
-$END$
+<h3>File Explorer</h3>
+<form method="post" th:action="@{/explorer/up}" th:object="${url}">
+    <button name="dir" th:value="${dir.getId()}" type="submit">^up</button>
+    <label>
+        <input th:value="${url}" type="text" readonly>
+    </label>
+</form>
+<br>
+<table>
+    <tbody>
+    <tr th:each="file: ${dir.getContent()}">
+        <td>
+            <form method="get" th:action="@{/explorer}" th:object="${file.getName()}">
+                <button name="dir" type="submit" th:value="${file.getId()}"
+                        th:if="${file instanceof T(at.kaindorf.fileexplorer.pojos.Directory)}"
+                        th:text="${file.getName()}"></button>
+            </form>
+            <span th:unless="${file instanceof T(at.kaindorf.fileexplorer.pojos.Directory)}"
+                  th:text="${file.getName()}"></span>
+        </td>
+        <td th:unless="${file instanceof T(at.kaindorf.fileexplorer.pojos.Directory)}" th:text="${file.formattedModifiedDateTime()}"></td>
+        <td th:if="${file instanceof T(at.kaindorf.fileexplorer.pojos.FileItem)}"
+            th:text="${file.getFileItem().formattedSize()}"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<form method="post" th:action="@{/explorer/create}">
+    insert:
+    <label>
+        <input value="dir" name="inputType" type="radio" checked>
+        directory
+    </label>
+    <label>
+        <input value="file" name="inputType" type="radio">
+        file
+    </label>
+    <br>
+    <label>
+        Name:
+        <input name="name" type="text">
+    </label>
+    <input type="submit" value="create">
+</form>
 </body>
 </html>

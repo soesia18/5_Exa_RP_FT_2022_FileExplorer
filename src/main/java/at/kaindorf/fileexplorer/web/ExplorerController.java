@@ -86,7 +86,7 @@ public class ExplorerController {
             pathUrl.pop();
         }
 
-        Directory parent = dir.getParent() == null ? directory() : dir.getParent();
+        Directory parent = dir.getParent() == null ? directory() : (Directory) dir.getParent();
         updateModel(model, parent);
         return new ModelAndView("ExplorerView");
     }

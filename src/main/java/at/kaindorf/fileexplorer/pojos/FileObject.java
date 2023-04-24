@@ -30,7 +30,7 @@ public abstract class FileObject {
     private LocalDateTime lastModified;
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "parent")
-    private Directory parent;
+    private FileObject parent;
 
     public FileObject(String name, LocalDateTime lastModified) {
         this.name = name;
